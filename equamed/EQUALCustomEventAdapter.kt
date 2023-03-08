@@ -1,5 +1,4 @@
-package equal
-//import com.applovin.mediation.adapters.tappx.BuildConfig
+package equamed
 
 import android.app.Activity
 import android.content.Context
@@ -28,24 +27,16 @@ import com.smartadserver.android.library.ui.SASInterstitialManager
 import com.smartadserver.android.library.util.SASUtil
 
 // Equativ(Smart) extra Util library
-import equal.EQUALCustomEventUtil.toPx
+import equamed.EQUALCustomEventUtil.toPx
 
 
 class EQUALCustomEventAdapter(private val sdk: AppLovinSdk) : MediationAdapterBase(sdk), MaxAdViewAdapter, MaxInterstitialAdapter {
 
-    /*
-    *   BANNER AND INTERSTITIAL AD DECLARATIONS
-    *   ==================================
-    */
     // Smart banner view that will handle the mediation ad call
     private var sasBannerView: SASBannerView? = null
     // Smart interstitial view that will handle the mediation ad call
     private var sasInterstitialView: SASInterstitialManager? = null
 
-    /*
-    *   INITIALIZATION METHODS
-    *   ==================================
-    */
 
     override fun initialize(parameters: MaxAdapterInitializationParameters , activity: Activity , onCompletionListener: MaxAdapter.OnCompletionListener)
     {
@@ -61,11 +52,9 @@ class EQUALCustomEventAdapter(private val sdk: AppLovinSdk) : MediationAdapterBa
     {
         return "0.1.1"
     }
-    
-    /*
-    *   BANNER AD METHODS
-    *   ==================================
-    */
+
+
+    //region MaxAdViewAdapter Methods
     override fun loadAdViewAd( parameters: MaxAdapterResponseParameters?, adFormat: MaxAdFormat?, activity: Activity?, listener: MaxAdViewAdapterListener? )
     {
         runOnUiThread {
@@ -166,6 +155,7 @@ class EQUALCustomEventAdapter(private val sdk: AppLovinSdk) : MediationAdapterBa
             }
 
             /* Data needed for the Ad Request to Equativ */
+
             // application context
             var context = applicationContext
             // set placement from customParameters
@@ -179,6 +169,7 @@ class EQUALCustomEventAdapter(private val sdk: AppLovinSdk) : MediationAdapterBa
             }
         }
     }
+
 
     /*
     *   INTERSTITIAL AD MEDITATION METHODS
@@ -207,11 +198,15 @@ class EQUALCustomEventAdapter(private val sdk: AppLovinSdk) : MediationAdapterBa
                     // Quit if there is already a banner being handled.
                     return
                 }
+
                 // instantiate a Smart interstitial manager
                 sasInterstitialView = SASInterstitialManager(context, adPlacement)
+
                 sasInterstitialView?.interstitialListener = object : SASInterstitialManager.InterstitialListener {
+
                     // get a Handler on the main thread to execute code on this thread
                     var handler = SASUtil.getMainLooperHandler()
+
                     override fun onInterstitialAdLoaded(
                         p0: SASInterstitialManager,
                         p1: SASAdElement
@@ -220,6 +215,7 @@ class EQUALCustomEventAdapter(private val sdk: AppLovinSdk) : MediationAdapterBa
 
                         handler.post { customEventInterstitialListener.onInterstitialAdLoaded() }
                     }
+
                     override fun onInterstitialAdFailedToLoad(
                         p0: SASInterstitialManager,
                         e: java.lang.Exception
@@ -273,6 +269,7 @@ class EQUALCustomEventAdapter(private val sdk: AppLovinSdk) : MediationAdapterBa
 
                 }
                 sasInterstitialView?.loadAd()
+
             }
             /* Data needed for the Ad Request to Equativ */
             // application context
@@ -291,17 +288,13 @@ class EQUALCustomEventAdapter(private val sdk: AppLovinSdk) : MediationAdapterBa
         }
 
     }
-    // Show the interstitial ad -> CALLED BY APPLOVIN MAX SDK
+
     override fun showInterstitialAd(parameters: MaxAdapterResponseParameters, activity: Activity, listener: MaxInterstitialAdapterListener ) {
         runOnUiThread {
             sasInterstitialView?.show()
         }
     }
 
-    /*
-    *   COMMON METHODS FOR BANNER AND INTERSTITIAL AD
-    *   ==================================
-    */
     @Synchronized
     override fun onDestroy() {
         if ( sasBannerView == null ) {
@@ -313,5 +306,7 @@ class EQUALCustomEventAdapter(private val sdk: AppLovinSdk) : MediationAdapterBa
             sasInterstitialView?.onDestroy()
             sasInterstitialView = null
         }
+
     }
+
 }
