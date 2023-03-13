@@ -31,7 +31,7 @@ Setup
     | :--   | :-- | --------------- | --------------- |
     | Placement ID      | `Number` |```Network ID``` | Equativ network's main ID    |
     | Custom Parameters | `JSON` |```{"siteid":"1234","pageid":"5678","formatid":"9101","targeting":""}```| Ad-placement ids from Equativ.      |
-    | CPM Price         | `Number` |```TBD by client```| This pertains to the agreement with Equativ.   |
+    | CPM Price         | `Number` |```TBD by client```| Not supported for yet   |
 
     > Note: AppLovin's Ad Unit is designed to work with either "Banner" or "Interstitial" Ad Types, which will automatically link to the appropriate mediation methods in Equativ's Class reference.
 
