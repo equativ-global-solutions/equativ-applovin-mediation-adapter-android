@@ -1,10 +1,13 @@
-Equativ - AppLovin SDK Adapter
+Equativ - AppLovin SDK - Custom Adapter
 ==============================================
+> **DISCLAIMER:** This solution has not been validated by the Equativ Product team. The Equativ's Product team cannot be held responsible for any potential issues arising from this integration.<br>
+> This solution should be considered as a *customized workaround* provided by Equativ's Global Solutions team for the integration of the Equativ(Smart) SDK.
 
 Introduction
 ------------
 The _Smart Display SDK_ can be utilized for banner and interstitial ads through the adapter provided in this repository when using the  _AppLovin SDK_. These adapters are compatible with _Smart Display SDK_ v7.0.
 > **Note:** Throughout this document, Equativ refers to Smart/Smart Ad Server as its former name.
+
 
 Setup
 -----
